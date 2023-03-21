@@ -7,8 +7,7 @@ const CreateUrlForm: React.FC = () => {
   const [shortUrl, setShortUrl] = useState('');
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
+    event.preventDefault()
 
     const apiUrl = process.env.REACT_APP_API_URL
 
@@ -17,13 +16,13 @@ const CreateUrlForm: React.FC = () => {
         params: {
           url: originalUrl,
         },
-      });
+      })
 
-      setShortUrl(response.data.shortUrl);
+      setShortUrl(response.data.shortUrl)
     } catch (error) {
-      console.error('Error creating short URL:', error);
+      console.error('Error creating short URL:', error)
     }
-  };
+  }
 
   return (
     <div className="form-container">
@@ -41,7 +40,7 @@ const CreateUrlForm: React.FC = () => {
       </form>
       {shortUrl && (
         <div>
-          <p>Your Short URL: <a href={shortUrl} target="_blank" rel="noopener noreferrer">{shortUrl}</a></p>
+          <p>Your Short URL: <a href={`${process.env.REACT_APP_API_URL}/${shortUrl}`} target="_blank" rel="noopener noreferrer">{shortUrl}</a></p>
         </div>
       )}
       <footer className="url-footer">
