@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "../styles/CreateUrlForm.css"
 
 const CreateUrlForm: React.FC = () => {
   const [originalUrl, setOriginalUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
 
- 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
+
+    const apiUrl = process.env.REACT_APP_API_URL
+
     try {
-      const response = await axios.post('http://localhost:8080/api/createUrl', null, {
+      const response = await axios.post(`${apiUrl}/api/createUrl`, null, {
         params: {
           url: originalUrl,
         },
@@ -23,9 +26,11 @@ const CreateUrlForm: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="form-container">
+      <h1>TinyURL Clone</h1>
       <form onSubmit={handleSubmit}>
         <input
+          className="url-input"
           type="url"
           placeholder="Enter URL"
           value={originalUrl}
@@ -36,9 +41,14 @@ const CreateUrlForm: React.FC = () => {
       </form>
       {shortUrl && (
         <div>
-          <p>Short URL: <a href={shortUrl} target="_blank" rel="noopener noreferrer">{shortUrl}</a></p>
+          <p>Your Short URL: <a href={shortUrl} target="_blank" rel="noopener noreferrer">{shortUrl}</a></p>
         </div>
       )}
+      <footer className="url-footer">
+        <p>
+          &copy; {new Date().getFullYear()} Yazan Musleh. All rights reserved.
+        </p>
+      </footer>
     </div>
   );
 };

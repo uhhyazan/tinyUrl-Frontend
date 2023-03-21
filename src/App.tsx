@@ -1,14 +1,11 @@
 import React from 'react';
-import './App.css';
 import CreateUrlForm from './components/CreateUrlForm';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Tiny URL</h1>
-      </header>
-      <main>
+      <main className="App-main">
         <CreateUrlForm />
       </main>
     </div>
