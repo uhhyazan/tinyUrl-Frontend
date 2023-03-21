@@ -12,7 +12,7 @@ const CreateUrlForm: React.FC = () => {
     const apiUrl = process.env.REACT_APP_API_URL
 
     try {
-      const response = await axios.post(`${apiUrl}/api/createUrl`, null, {
+      const response = await axios.post(`${apiUrl}/createUrl`, null, {
         params: {
           url: originalUrl,
         },
